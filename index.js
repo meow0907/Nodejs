@@ -121,7 +121,9 @@ eventEmitter.emit("checkout", product);
 // //--------------------------Slugify-------------------------
 // const slugify = require("slugify");
 // const slugified = (text) => {
-//   return slugify(text.toLowerCase());
+//   return slugify(text, {
+//     lower: true,
+//   });
 // };
 // const res = slugified("Top 7 Feature Artciles");
 // console.log(res);
@@ -134,7 +136,7 @@ eventEmitter.emit("checkout", product);
 //   "Retrieval-Augmented Generation (RAG) is an advanced framework that combines retrieval-based and generation-based approaches."
 // );
 // console.log(truncated);
-// //------------------------Hashing passowrds------------------------------
+//------------------------Hashing passowrds------------------------------
 // const bcrypt = require("bcryptjs");
 // //generate a salt
 // const saltRounds = 10;
@@ -163,4 +165,55 @@ eventEmitter.emit("checkout", product);
 //   } else {
 //     console.log("Password doesnot match!");
 //   }
+// });
+//----------using function-------------------------------
+// const bcryptjs = require("bcryptjs");
+// const encryptPw = (text) => bcryptjs.hashSync(text);
+// const verifyPw = ({ hashText, text }) => bcryptjs.compareSync(text, hashText);
+
+// const hashPw = encryptPw("password");
+// const isValidPw = verifyPw({ text: "password", hashText: hashPw });
+// console.log({ isValidPw });
+
+//---------------------------------------------------day6--------------------------------------
+//---------nodemailer--------
+// require("dotenv").config();
+// const nodemailer = require("nodemailer");
+// //transporter
+// const transporter = nodemailer.createTransport({
+//   service: process.env.EMAIL_SERVICE,
+//   auth: {
+//     user: process.env.EMAIL_USER,
+//     pass: process.env.EMAIL_PW,
+//   },
+// });
+
+// transporter.verify((err) => {
+//   if (err) console.log(err);
+//   console.log("email is working");
+// });
+
+// const sendEmail = async ({ email, subject, message, attachments }) => {
+//   //const data = await ('email+subject');  if email and subject add garna doesnot take time then ...appears on await
+//   const info = await transporter.sendMail({
+//     from: `"Anjila Gurung👻" <${process.env.EMAIL_USER}>`, // sender address
+//     to: email, // list of receivers
+//     subject: subject, // Subject line
+//     html: message, // html body
+//     attachments,
+//   });
+//   return info;
+// };
+
+// sendEmail({
+//   email: "pathakbhags912@gmail.com",
+//   subject: "sunnnta",
+//   message: "<div>Happy new year<div> <img src ='cid:happy-new-year'/>",
+//   attachments: [
+//     {
+//       filename: "img.jpg",
+//       path: "./img.jpg",
+//       cid: "happy-new-year",
+//     },
+//   ],
 // });
